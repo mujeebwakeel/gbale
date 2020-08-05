@@ -10,7 +10,7 @@ var methodOverride = require("method-override");
 var User = require("./models/user");
 require('dotenv').config();
 
-
+ 
 
 // REQUIRING ROUTES
 var indexRoutes = require("./routes/index");
@@ -58,4 +58,5 @@ app.get("*", function(req,res){
 
 app.listen(3000, function(){
     console.log("Server has started");
+    console.log(moment().diff(moment("2020-08-05T12:18:07+01:00"), "minutes"));
 });

@@ -1,6 +1,40 @@
 <%- include('../partials/header'); -%>
 
 
+<h2 style="text-align: center;">Category: Contact</h2>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Phone Num</th>
+                <th>Request</th>
+                <th>Area</th>
+                <th>Notification</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% customers.forEach(function(customer) { %>
+            <tr>
+                    <td><%= customer.name %></td>
+                    <td><%= customer.phoneNum %></td>
+                    <td><%= customer.request %></td>
+                    <td><%= customer.area %></td>
+                    <td><div class="notif"></div></td>
+                    <td>
+                       <button><a href="/customer/<%= customer._id %>/edit">Edit</a></button>
+                        <form class="delete-button" action="/customer/<%= customer._id %>/delete?_method=DELETE" method="POST">
+                            <button>Delete</button>
+                        </form>
+                        <button><a href="/customer/<%= customer._id %>/counter">Move</a></button>
+                    </td>
+                </tr>
+                <% }); %>
+        </tbody>
+    </table>
+</div>
+
 
 
 <%- include('../partials/footer'); -%>

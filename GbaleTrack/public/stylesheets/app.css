@@ -23,9 +23,48 @@ body {
 	background-color: rosybrown;
 }
 
+.table {
+	width: 100%;
+}
 
+thead>tr {
+	background-color: beige;
+}
 
+tr,th {
+	text-align: center;
+}
 
+tbody>tr:nth-child(odd) {
+	background-color: aquamarine;
+}
 
+tbody>tr:nth-child(even) {
+	background-color: rgb(241, 211, 76);
+}
+
+.delete-button {
+	display: inline-block;
+}
+
+.move-button {
+	display: inline-block;
+}
+
+td button, td button a {
+	background-color: thistle;
+	color: #000000;
+	outline: none;
+	border-radius: 10%;
+	border: none;
+}
+
+.notif {
+	padding: 10px;
+	background-color: violet;
+	width: 6rem;
+	height: .5rem;
+	margin: 0 auto;
+}
 
 

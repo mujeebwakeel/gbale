@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var User = require("../models/user");
+var Customer = require("../models/customer");
 var passport = require("passport");
 var middleware = require("../middlewares");
 
@@ -81,5 +82,10 @@ router.get("/users", function(req,res) {
     })
 })
 
+router.get("/customers", function(req,res) {
+    Customer.find({}, function(err, foundUser) {
+        res.send(foundUser);
+    })
+})
 
 module.exports = router;
