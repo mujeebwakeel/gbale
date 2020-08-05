@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-
+var moment = require("moment");
 
 var customerSchema = new mongoose.Schema({
     name: {type: String, unique: true, required: true},
@@ -7,8 +7,8 @@ var customerSchema = new mongoose.Schema({
     request: {type: String, required: true},
     area: {type: String, required: true}, 
     paid: {type: Boolean, default:false},
-    counter: {type: Number, default: 1, max: 3},
-    created: {type: Date, default: Date.now},
+    counter: {type: Number, default: 1},
+    created: {type: Date, default: moment().format()}
 });
 
 

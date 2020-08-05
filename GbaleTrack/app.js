@@ -58,5 +58,5 @@ app.get("*", function(req,res){
 
 app.listen(3000, function(){
     console.log("Server has started");
-    console.log(moment().diff(moment("2020-08-05T12:18:07+01:00"), "minutes"));
+    console.log(typeof moment().diff(moment("2020-08-05T18:13:09+01:00"), 'minutes'));
 });
