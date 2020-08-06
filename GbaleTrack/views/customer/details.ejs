@@ -16,75 +16,32 @@
         </thead>
         <tbody>
             <% customers.forEach(function(customer) { %>
-                <% if( moment().diff(moment(customer.created), 'hours') < 1 && customer.counter === 1)  { %>
+                <% if(customer.counter === 1)  { %>
                     <tr>
                         <td><%= customer.name %></td>
                         <td><%= customer.phoneNum %></td>
                         <td><%= customer.request %></td>
                         <td><%= customer.area %></td>
-                        <td><div class="notif1"></div></td>
-                        <td>
-                            <button><a href="/customer/<%= customer._id %>/edit">Edit</a></button>
-                            <form class="delete-button" action="/customer/<%= customer._id %>/counter?_method=PUT" method="POST">
-                                <button>Move</button>
-                            </form>
-                            <form class="delete-button" action="/customer/<%= customer._id %>/delete?_method=DELETE" method="POST">
-                                <button>Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                <% }else if( moment().diff(moment(customer.created), 'hours') === 1 && customer.counter === 1 ) { %>
-                    <tr>
-                        <td><%= customer.name %></td>
-                        <td><%= customer.phoneNum %></td>
-                        <td><%= customer.request %></td>
-                        <td><%= customer.area %></td>
-                        <td><div class="notif2"></div></td>
-                        <td>
-                            <button><a href="/customer/<%= customer._id %>/edit">Edit</a></button>
-                            <form class="delete-button" action="/customer/<%= customer._id %>/counter?_method=PUT" method="POST">
-                                <button>Move</button>
-                            </form>
-                            <form class="delete-button" action="/customer/<%= customer._id %>/delete?_method=DELETE" method="POST">
-                                <button>Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <% }else if( moment().diff(moment(customer.created), 'hours') === 2 && customer.counter === 1) { %>
-                        <tr>
-                            <td><%= customer.name %></td>
-                            <td><%= customer.phoneNum %></td>
-                            <td><%= customer.request %></td>
-                            <td><%= customer.area %></td>
+                        <% if(moment().diff(moment(customer.created), 'hours') < 1 ) { %>
+                            <td><div class="notif1"></div></td>
+                        <% }else if(moment().diff(moment(customer.created), 'hours') === 1) { %>
+                            <td><div class="notif2"></div></td>
+                        <% }else if(moment().diff(moment(customer.created), 'hours') === 2) { %>
                             <td><div class="notif3"></div></td>
-                            <td>
-                                <button><a href="/customer/<%= customer._id %>/edit">Edit</a></button>
-                                <form class="delete-button" action="/customer/<%= customer._id %>/counter?_method=PUT" method="POST">
-                                    <button>Move</button>
-                                </form>
-                                <form class="delete-button" action="/customer/<%= customer._id %>/delete?_method=DELETE" method="POST">
-                                    <button>Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                        <% }else if( moment().diff(moment(customer.created), 'hours') > 2 && customer.counter === 1){ %>
-                            <tr>
-                                <td><%= customer.name %></td>
-                                <td><%= customer.phoneNum %></td>
-                                <td><%= customer.request %></td>
-                                <td><%= customer.area %></td>
-                                <td><div class="notif4"></div></td>
-                                <td>
-                                    <button><a href="/customer/<%= customer._id %>/edit">Edit</a></button>
-                                    <form class="delete-button" action="/customer/<%= customer._id %>/counter?_method=PUT" method="POST">
-                                        <button>Move</button>
-                                    </form>
-                                    <form class="delete-button" action="/customer/<%= customer._id %>/delete?_method=DELETE" method="POST">
-                                        <button>Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
+                        <% }else if(moment().diff(moment(customer.created), 'hours') > 2) { %>
+                            <td><div class="notif4"></div></td>
                         <% } %>
+                        <td>
+                            <button><a href="/customer/<%= customer._id %>/edit">Edit</a></button>
+                            <form class="delete-button" action="/customer/<%= customer._id %>/counter?_method=PUT" method="POST">
+                                <button>Move</button>
+                            </form>
+                            <form class="delete-button" action="/customer/<%= customer._id %>/delete?_method=DELETE" method="POST">
+                                <button>Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% } %>
             <% }); %>
         </tbody>
     </table>
@@ -100,7 +57,6 @@
                 <th>Phone Num</th>
                 <th>Request</th>
                 <th>Area</th>
-                <th>Notification</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -112,7 +68,6 @@
                         <td><%= customer.phoneNum %></td>
                         <td><%= customer.request %></td>
                         <td><%= customer.area %></td>
-                        <td><div class="notif1"></div></td>
                         <td>
                             <button><a href="/customer/<%= customer._id %>/edit">Edit</a></button>
                             <form class="delete-button" action="/customer/<%= customer._id %>/counter?_method=PUT" method="POST">
@@ -139,7 +94,6 @@
                 <th>Phone Num</th>
                 <th>Request</th>
                 <th>Area</th>
-                <th>Notification</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -151,7 +105,6 @@
                         <td><%= customer.phoneNum %></td>
                         <td><%= customer.request %></td>
                         <td><%= customer.area %></td>
-                        <td><div class="notif1"></div></td>
                         <td>
                             <button><a href="/customer/<%= customer._id %>/edit">Edit</a></button>
                             <form class="delete-button" action="/customer/<%= customer._id %>/delete?_method=DELETE" method="POST">

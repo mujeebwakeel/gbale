@@ -17,7 +17,7 @@ var indexRoutes = require("./routes/index");
 var customerRoutes = require("./routes/customer");
 var passwordReset = require("./routes/passwordreset");
 
-mongoose.connect("mongodb://localhost/gbale", { useNewUrlParser: true, 'useUnifiedTopology': true, 'useFindAndModify': false, useCreateIndex: true });
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, 'useUnifiedTopology': true, 'useFindAndModify': false, useCreateIndex: true });
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
@@ -58,5 +58,4 @@ app.get("*", function(req,res){
 
 app.listen(3000, function(){
     console.log("Server has started");
-    console.log(typeof moment().diff(moment("2020-08-05T18:13:09+01:00"), 'minutes'));
 });

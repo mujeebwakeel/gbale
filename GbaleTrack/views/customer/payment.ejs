@@ -1,6 +1,6 @@
 <%- include('../partials/header'); -%>
 
-<h2 style="text-align: center; margin-top: 50px;">Payment Section</h2>
+<h2 style="text-align: center; margin-top: 20px;">Payment Section</h2>
 <div>
     <table class="table">
         <thead>
@@ -11,10 +11,12 @@
                 <th>Area</th>
                 <th>Payment</th>
                 <th>Status</th>
+                <th>Effectiveness</th>
             </tr>
         </thead>
         <tbody>
             <% customers.forEach(function(customer) { %>
+                <% if(customer.counter !== 1) { %>
                     <tr>
                         <td><%= customer.name %></td>
                         <td><%= customer.phoneNum %></td>
@@ -34,8 +36,19 @@
                         <% } else { %>
                             <td>No</td>
                         <% } %>
+                        
+                        <% if(moment(customer.moveCreated).diff(moment(customer.created), 'hours') < 1 ) { %>
+                            <td><div class="notif1"></div></td>
+                        <% }else if(moment(customer.moveCreated).diff(moment(customer.created), 'hours') === 1) { %>
+                            <td><div class="notif2"></div></td>
+                        <% }else if(moment(customer.moveCreated).diff(moment(customer.created), 'hours') === 2) { %>
+                            <td><div class="notif3"></div></td>
+                        <% }else if(moment(customer.moveCreated).diff(moment(customer.created), 'hours') > 2) { %>
+                            <td><div class="notif4"></div></td>
+                        <% } %> 
                     </tr>
-                <% }); %>
+                <% } %>
+            <% }); %>
         </tbody>
     </table>
 </div>

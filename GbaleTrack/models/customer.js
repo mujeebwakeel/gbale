@@ -8,7 +8,8 @@ var customerSchema = new mongoose.Schema({
     area: {type: String, required: true}, 
     paid: {type: Boolean, default:false},
     counter: {type: Number, default: 1},
-    created: {type: Date, default: moment().format()}
+    created: {type: Date, default: moment().format()},
+    moveCreated: {type: Date, default: moment().format()}
 });
 
 

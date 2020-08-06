@@ -2,6 +2,16 @@ var express = require("express");
 var router = express.Router();
 var Customer = require("../models/customer");
 var middleware = require("../middlewares");
+var moment = require("moment");
+
+router.get("/away", function(req,res) {
+    Customer.deleteMany({}, function(err) {
+        if(err) {
+            return res.send(err)
+        }
+        res.send("Successfully cleaned the database for customers");
+    })
+})
 
 router.get("/register", middleware.isAdmin, function(req,res) {
     res.render("customer/register", {page: "customer"});
@@ -10,7 +20,7 @@ router.get("/register", middleware.isAdmin, function(req,res) {
 router.post("/register", middleware.isAdmin, function(req,res) {
     Customer.create(req.body.customer, function(err,newCustomer) {
         if(err) {
-            req.flash("error", err.message);
+            req.flash("error", "Something went wrong");
             return res.redirect("/customer/register")       
         }
         req.flash("success", "You successfully registered a customer");
@@ -19,20 +29,31 @@ router.post("/register", middleware.isAdmin, function(req,res) {
 });
 
 router.put("/:id/counter", middleware.isAdmin, function(req,res) {
-    Customer.findById(req.params.id, function(err, foundCustomer) {
+    Customer.findById(req.params.id, async function(err, foundCustomer) {
         if(err || !foundCustomer) {
             req.flash("error", "Customer does not exist");
             return res.redirect("/home")
         }
-        var count = foundCustomer.counter + 1;
-        Customer.findByIdAndUpdate(req.params.id, {counter: count}, function (err) {
-            if(err) {
-                req.flash("error", err.message);
+        var count = await foundCustomer.counter + 1;
+        if(foundCustomer.counter ===1) {
+            Customer.findByIdAndUpdate(req.params.id, {counter: count, moveCreated: moment().format()}, function (err) {
+                if(err) {
+                    req.flash("error", "Something went wrong");
+                    return res.redirect("/customer/details");
+                }
+                req.flash("success", "You successfully moved a customer");
+                res.redirect("/customer/details");
+            })
+        }else{
+            Customer.findByIdAndUpdate(req.params.id, {counter: count}, function (err) {
+                if(err) {
+                    req.flash("error", "Something went wrong");
+                    return res.redirect("/customer/details");
+                }
+                req.flash("success", "You successfully moved a customer");
                 return res.redirect("/customer/details");
-            }
-            req.flash("success", "You successfully moved a customer");
-            res.redirect("/customer/details");
-        })
+            })
+        }  
     })
 })
 
@@ -92,14 +113,14 @@ router.delete("/:id/delete", middleware.isAdmin, function(req,res) {
     });
 });
 
-router.get("/payment", middleware.isAdmin,function(req,res) {
+router.get("/payment", middleware.isAdmin, function(req,res) {
     Customer.find({}, function(err, foundCustomers) {
         if(err || !foundCustomers)  {
             req.flash("error", "Customers not found");
             return res.redirect("/home");
         }
         res.render("customer/payment", {customers: foundCustomers, page: "payment"});
-    })
+    });
 });
 
 router.post("/:id/payment", middleware.isAdmin, function(req,res) {
@@ -112,5 +133,6 @@ router.post("/:id/payment", middleware.isAdmin, function(req,res) {
         return res.redirect("/customer/payment");
     })
 })
+
 
 module.exports = router;
