@@ -4,15 +4,6 @@ var Customer = require("../models/customer");
 var middleware = require("../middlewares");
 var moment = require("moment");
 
-router.get("/away", function(req,res) {
-    Customer.deleteMany({}, function(err) {
-        if(err) {
-            return res.send(err)
-        }
-        res.send("Successfully cleaned the database for customers");
-    })
-})
-
 router.get("/register", middleware.isAdmin, function(req,res) {
     res.render("customer/register", {page: "customer"});
 });

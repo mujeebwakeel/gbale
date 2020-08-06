@@ -37,13 +37,13 @@
                             <td>No</td>
                         <% } %>
                         
-                        <% if(moment(customer.moveCreated).diff(moment(customer.created), 'hours') < 1 ) { %>
+                        <% if(moment(customer.moveCreated).diff(moment(customer.created), 'days') < 1 ) { %>
                             <td><div class="notif1"></div></td>
-                        <% }else if(moment(customer.moveCreated).diff(moment(customer.created), 'hours') === 1) { %>
+                        <% }else if(moment(customer.moveCreated).diff(moment(customer.created), 'days') === 1) { %>
                             <td><div class="notif2"></div></td>
-                        <% }else if(moment(customer.moveCreated).diff(moment(customer.created), 'hours') === 2) { %>
+                        <% }else if(moment(customer.moveCreated).diff(moment(customer.created), 'days') === 2) { %>
                             <td><div class="notif3"></div></td>
-                        <% }else if(moment(customer.moveCreated).diff(moment(customer.created), 'hours') > 2) { %>
+                        <% }else if(moment(customer.moveCreated).diff(moment(customer.created), 'days') > 2) { %>
                             <td><div class="notif4"></div></td>
                         <% } %> 
                     </tr>

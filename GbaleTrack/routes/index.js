@@ -82,10 +82,6 @@ router.get("/users", function(req,res) {
     })
 })
 
-router.get("/customers", function(req,res) {
-    Customer.find({}, function(err, foundUser) {
-        res.send(foundUser);
-    })
-})
+
 
 module.exports = router;
