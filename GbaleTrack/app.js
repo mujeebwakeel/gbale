@@ -7,6 +7,8 @@ var flash = require("connect-flash");
 var passport = require("passport");
 var localStrategy = require("passport-local");
 var methodOverride = require("method-override");
+var session = require('express-session')
+var MemoryStore = require('memorystore')(session);
 var User = require("./models/user");
 require('dotenv').config();
 
@@ -25,7 +27,11 @@ app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
 
-app.use(require("express-session")({
+app.use(session({
+    cookie: { maxAge: 86400000 },
+    store: new MemoryStore({
+      checkPeriod: 86400000 // prune expired entries every 24h
+    }),
     secret: "I want to be the best in all I do",
     resave: false,
     saveUninitialized: false
