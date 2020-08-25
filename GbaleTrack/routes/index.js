@@ -54,7 +54,8 @@ router.post("/login", passport.authenticate("local", {
 // LOG OUT ROUTE
 router.get("/logout", function(req,res){
     req.logout();
-    res.redirect("/");
+    req.flash("success", "You are signed out");
+    res.redirect("/home");
 });
 
 var houses = [

@@ -34,7 +34,7 @@
                                 <% }else{ %>
                                     <% if(currentUser.isAdmin) { %>
                                         <li class="<%= typeof page !== 'undefined' && page === 'customer' ? 'active' : '' %>"><a href="/customer/register">Register customer</a></li>
-                                        <li class="<%= typeof page !== 'undefined' && page === 'details' ? 'active' : '' %>"><a href="/customer/details">Business Details</a></li>
+                                        <li class="<%= typeof page !== 'undefined' && page === 'contact' || page === 'picture' || page === 'inspection' ? 'active' : '' %>"><a href="/customer/details/contact">Business Details</a></li>
                                         <li class="<%= typeof page !== 'undefined' && page === 'payment' ? 'active' : '' %>"><a href="/customer/payment">Payment</a></li>
                                     <% } %>
                                     <li><a>Currently signed in as <%=currentUser.username%></a></li>

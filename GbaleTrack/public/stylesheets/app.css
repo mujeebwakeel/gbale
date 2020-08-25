@@ -9,7 +9,16 @@ body {
 }
 
 .navbar-default {
-	background-color: rgb(221, 168, 221);
+	background-color:rgba(0, 0, 0);
+}
+
+.navbar-fixed-bottom {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: black;
+	background-color: whitesmoke;
+	border: none;
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -25,7 +34,7 @@ body {
 }
 
 .jumbotron {
-	background-color: rosybrown;
+	background-color: rgba(217, 231, 106, .2);
 }
 
 .table {
@@ -100,4 +109,21 @@ td button, td button a {
 	margin: 0 auto;
 }
 
+.categories {
+	display: flex;
+	justify-content: space-between;
+	width: 39rem;
+	margin: 1rem auto;
+	margin-bottom: .1rem;
+}
 
+.categories>div {
+	border-top: .3rem #c0c0c0 solid;
+	color: #c0c0c0;
+	flex: 1 1;
+}
+
+.categories>div.active {
+	border-top: .3rem #f08000 solid;
+	color: #f08000;
+}

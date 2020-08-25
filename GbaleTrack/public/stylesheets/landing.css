@@ -1,5 +1,5 @@
 body {
-  background-image: url("https://images.unsplash.com/photo-1570057633712-870fa818fa15?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
+  background-image: url(../img/house3.jpg);
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
@@ -9,11 +9,20 @@ body {
   z-index: 1;
   position: relative;
   text-align: center;
-  padding-top: 40vh;
+  padding-top: 30vh;
 }
 
 #landing-page h1 {
   color: #fff;
+}
+
+#welcome {
+font-size: 10rem;
+}
+
+.btn-group-lg>.btn, .btn-lg {
+  font-size: 8rem;
+  margin: 1.5rem;
 }
 
 .slideshow { 
